@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:planto/pages/homepage.dart';
+import 'package:planto/pages/loginSignup/loginHome.dart';
 import 'package:planto/pages/onboardingScreens/onBoardingModel.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -30,17 +29,24 @@ class _OnBoardingState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.skip_next))
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginHome(),
+                ),
+              );
+            },
+            child: Text(
+              "Skip",
+              style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
+            ),
+          ),
         ],
       ),
       body: SafeArea(
