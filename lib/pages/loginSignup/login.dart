@@ -81,7 +81,7 @@ class _LoginpageState extends State<Loginpage> {
             alignment: Alignment.center,
             child: Text(
               "Or Signin with",
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ),
           SizedBox(
