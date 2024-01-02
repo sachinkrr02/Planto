@@ -55,9 +55,10 @@ class LoginHome extends StatelessWidget {
             children: [
               ElevatedButton(
                 style: OutlinedButton.styleFrom(
-                    primary: Colors.black,
-                    side: BorderSide(color: Colors.lightGreen),
-                    shape: RoundedRectangleBorder()),
+                  backgroundColor: Colors.lightGreen,
+                  primary: Colors.black,
+                  shape: const RoundedRectangleBorder(),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -66,7 +67,7 @@ class LoginHome extends StatelessWidget {
                 },
                 child: Text(
                   "Signup",
-                  style: TextStyle(fontSize: 19),
+                  style: TextStyle(fontSize: 19, color: Colors.white),
                 ),
               ),
               ElevatedButton(
