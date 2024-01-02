@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:planto/pages/loginSignup/login.dart';
 
@@ -9,6 +10,29 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> CreateAcc() async {
+    var emailAddress = emailController.text.trim();
+    var password = passwordController.text.trim();
+    try {
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailAddress,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +68,7 @@ class _SignupPageState extends State<SignupPage> {
             height: 10,
           ),
           TextField(
+            controller: emailController,
             decoration: InputDecoration(
               hintText: "Email",
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -56,6 +81,7 @@ class _SignupPageState extends State<SignupPage> {
             height: 10,
           ),
           TextField(
+            controller: passwordController,
             decoration: InputDecoration(
               hintText: "Password",
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -81,8 +107,7 @@ class _SignupPageState extends State<SignupPage> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Loginpage()));
+              CreateAcc();
             },
             child: Text(
               "Create Account",

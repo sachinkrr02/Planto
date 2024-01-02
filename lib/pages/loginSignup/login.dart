@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:planto/pages/homepage.dart';
 import 'package:planto/pages/loginSignup/signup.dart';
@@ -10,6 +11,31 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  void signin() async {
+    var emailAddress = emailController.text.trim();
+    var password = passwordController.text.trim();
+
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: emailAddress, password: password);
+
+      if (credential.user != null) {
+        Navigator.popUntil(context, (route) => route.isFirst);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +59,7 @@ class _LoginpageState extends State<Loginpage> {
             height: 20,
           ),
           TextField(
+            controller: emailController,
             decoration: InputDecoration(
               hintText: "Email",
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -45,6 +72,7 @@ class _LoginpageState extends State<Loginpage> {
             height: 20,
           ),
           TextField(
+            controller: passwordController,
             decoration: InputDecoration(
               hintText: "Password",
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -65,8 +93,7 @@ class _LoginpageState extends State<Loginpage> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              signin();
             },
             child: Text(
               "Sign In",
