@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:planto/pages/homepage.dart';
+import 'package:planto/pages/loginSignup/login.dart';
 import 'package:planto/pages/onboardingScreens/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,12 +17,12 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
         const Duration(
-            seconds: 2), // Adjust  the  duration according to requirements.
+            seconds: 1), // Adjust  the  duration according to requirements.
         // For Navigation
         () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => const OnBoardingScreen(),
+          builder: (BuildContext context) => const Loginpage(),
         ),
       );
     });
