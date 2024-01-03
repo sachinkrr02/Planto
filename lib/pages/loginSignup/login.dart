@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:planto/pages/homepage.dart';
+import 'package:planto/home/homepage.dart';
 import 'package:planto/pages/loginSignup/signup.dart';
 
 class Loginpage extends StatefulWidget {

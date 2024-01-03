@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:planto/pages/homepage.dart';
+import 'package:planto/home/homepage.dart';
 import 'package:planto/pages/loginSignup/login.dart';
 import 'package:planto/pages/onboardingScreens/onboarding_screen.dart';
 
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
         () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => const OnBoardingScreen(),
+          builder: (BuildContext context) => const HomePage(),
         ),
       );
     });
