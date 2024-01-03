@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:planto/pages/homepage.dart';
 import 'package:planto/pages/loginSignup/loginHome.dart';
 import 'package:planto/pages/onboardingScreens/onBoardingModel.dart';
 
